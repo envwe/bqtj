@@ -14,8 +14,8 @@ int main() {
 	wstring processName = L"bqtj.exe";
     DWORD pid = GetProcessIdByName(processName);
     if (pid != 0) {
-        wcout << "½ø³ÌÃû³Æ£º" << processName << endl;
-        cout << "½ø³Ìpid£º" << pid << endl;
+        wcout << "è¿›ç¨‹åç§°ï¼š" << processName << endl;
+        cout << "è¿›ç¨‹pidï¼š" << pid << endl;
     }
     else {
         cout << "Process not found." << endl;
@@ -39,50 +39,50 @@ int main() {
     while (true)
     {
         system("cls");
-        cout << "ÍòÎï½Ô±¡¤Î±¬Ç¹¸¨Öúin20240128(Ãâ·Ñ)" << endl;
+        cout << "ä¸‡ç‰©çš†è–„ã®çˆ†æªè¾…åŠ©in20240128" << endl;
         if (shuru != -1) {
-            cout <<shuru<< ".ĞŞ¸Ä³É¹¦" << endl;
+            cout <<shuru<< ".ä¿®æ”¹æˆåŠŸ" << endl;
         }
-        cout << "ÊäÈëÊı×ÖÔÙ°´»Ø³µ£º" << endl;
-        cout << "0.ÍË³ö¸¨Öú" << endl;
-        cout << "1.°´Å¥µãÁÁ" << endl;
-        cout << "2.Ëø»¤¶Ü(ÏÈ°¤Ò»ÏÂ´ò»ò½øÈ¥µÈÒ»»á)" << endl;
-        cout << "3.ÃëÉ±(ÏÈ´òÒ»ÏÂ,´îÅäËø¶ÜÊ³ÓÃÒòÎªÒ²Ãë×Ô¼º)" << endl;
-        cout << "4.Ãâ·Ñ×ÜÍ³,ÉÌ³Ç(ÏÈ¿ª°´Å¥µãÁÁÂò×ÜÍ³ÔÙÈ¥ÂòÒ»ÏÂÉÌ³Ç)" << endl;
-        cout << "5.Ç¿ÖÆ½øÈë¾º¼¼³¡,¾ü¶ÓµÈ" << endl;
+        cout << "è¾“å…¥æ•°å­—å†æŒ‰å›è½¦ï¼š" << endl;
+        cout << "0.é€€å‡ºè¾…åŠ©" << endl;
+        cout << "1.æŒ‰é’®ç‚¹äº®" << endl;
+        cout << "2.é”æŠ¤ç›¾(å…ˆæŒ¨ä¸€ä¸‹æ‰“æˆ–è¿›å»ç­‰ä¸€ä¼š)" << endl;
+        cout << "3.ç§’æ€(å…ˆæ‰“ä¸€ä¸‹,æ­é…é”ç›¾é£Ÿç”¨å› ä¸ºä¹Ÿç§’è‡ªå·±)" << endl;
+        cout << "4.å…è´¹æ€»ç»Ÿ,å•†åŸ(å…ˆå¼€æŒ‰é’®ç‚¹äº®ä¹°æ€»ç»Ÿå†å»ä¹°ä¸€ä¸‹å•†åŸ)" << endl;
+        cout << "5.å¼ºåˆ¶è¿›å…¥ç«æŠ€åœº,å†›é˜Ÿç­‰" << endl;
         cin >> shuru;
         switch (shuru)
         {
         case 0:
             break;
         case 1:
-            ScanAddress(hProcess, ËÑË÷°´Å¥µãÁÁ, 0);
-            WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ĞŞ¸Ä°´Å¥µãÁÁ, sizeof(ĞŞ¸Ä°´Å¥µãÁÁ), 0);
+            ScanAddress(hProcess, æœç´¢æŒ‰é’®ç‚¹äº®, 0);
+            WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ä¿®æ”¹æŒ‰é’®ç‚¹äº®, sizeof(ä¿®æ”¹æŒ‰é’®ç‚¹äº®), 0);
             break;
         case 2:
-            ScanAddress(hProcess, ËÑË÷Ëø»¤¶Ü, 0);
-            WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ĞŞ¸ÄËø»¤¶Ü, sizeof(ĞŞ¸ÄËø»¤¶Ü), 0);
+            ScanAddress(hProcess, æœç´¢é”æŠ¤ç›¾, 0);
+            WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ä¿®æ”¹é”æŠ¤ç›¾, sizeof(ä¿®æ”¹é”æŠ¤ç›¾), 0);
             break;
         case 3:
-            ScanAddress(hProcess, ËÑË÷ÃëÉ±, 0);
-            WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ĞŞ¸ÄÃëÉ±, sizeof(ĞŞ¸ÄÃëÉ±), 0);
+            ScanAddress(hProcess, æœç´¢ç§’æ€, 0);
+            WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ä¿®æ”¹ç§’æ€, sizeof(ä¿®æ”¹ç§’æ€), 0);
             break;
         case 4:
-            ScanAddress(hProcess, ËÑË÷Ãâ·Ñ×ÜÍ³, 0);
-            WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ĞŞ¸ÄÃâ·Ñ×ÜÍ³, sizeof(ĞŞ¸ÄÃâ·Ñ×ÜÍ³), 0);
-            ScanAddress(hProcess, ËÑË÷Ãâ·Ñ×ÜÍ³, 0);
-            WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ĞŞ¸ÄÃâ·Ñ×ÜÍ³, sizeof(ĞŞ¸ÄÃâ·Ñ×ÜÍ³), 0);
+            ScanAddress(hProcess, æœç´¢å…è´¹æ€»ç»Ÿ, 0);
+            WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ä¿®æ”¹å…è´¹æ€»ç»Ÿ, sizeof(ä¿®æ”¹å…è´¹æ€»ç»Ÿ), 0);
+            ScanAddress(hProcess, æœç´¢å…è´¹æ€»ç»Ÿ, 0);
+            WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ä¿®æ”¹å…è´¹æ€»ç»Ÿ, sizeof(ä¿®æ”¹å…è´¹æ€»ç»Ÿ), 0);
             break;
         case 5:
-            ScanAddress(hProcess, ËÑË÷½øÈë¾º¼¼³¡, 0);
-            WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ĞŞ¸Ä½øÈë¾º¼¼³¡1, sizeof(ĞŞ¸Ä½øÈë¾º¼¼³¡1), 0);
+            ScanAddress(hProcess, æœç´¢è¿›å…¥ç«æŠ€åœº, 0);
+            WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ä¿®æ”¹è¿›å…¥ç«æŠ€åœº1, sizeof(ä¿®æ”¹è¿›å…¥ç«æŠ€åœº1), 0);
             temp1 = hanshu_dizhi + 103;
-            WriteProcessMemory(hProcess, (LPVOID)temp1, &ĞŞ¸Ä½øÈë¾º¼¼³¡2, sizeof(ĞŞ¸Ä½øÈë¾º¼¼³¡2), 0);
+            WriteProcessMemory(hProcess, (LPVOID)temp1, &ä¿®æ”¹è¿›å…¥ç«æŠ€åœº2, sizeof(ä¿®æ”¹è¿›å…¥ç«æŠ€åœº2), 0);
             break;
         case 114514:
-            cout << "ºÃ³ô" << endl;
+            cout << "å¥½è‡­" << endl;
         default:
-            cout << "Î´ÕÒµ½" << endl;
+            cout << "æœªæ‰¾åˆ°" << endl;
             break;
         }
 
