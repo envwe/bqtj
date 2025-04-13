@@ -1,23 +1,22 @@
 #include <iostream>
 #include <windows.h>
-#include <graphics.h>		// ÒýÓÃÁËEasyX
+#include <graphics.h> // å¼•ç”¨äº†EasyX
 #include <conio.h>
 #include "GetProcessIdByName.hpp"
-#include"FindMemByMarkCode.hpp"
-#include"MarkCode.h"
+#include "FindMemByMarkCode.hpp"
+#include "MarkCode.h"
 
 using namespace std;
 
 int main() {
-	wstring processName = L"bqtj.exe";
+    wstring processName = L"bqtj.exe";
     DWORD pid = GetProcessIdByName(processName);
     if (pid != 0) {
-        wcout << "½ø³ÌÃû³Æ£º" << processName << endl;
-        cout << "½ø³Ìpid£º" << pid << endl;
-    }
-    else {
+        wcout << "Process Name: " << processName << endl;
+        cout << "Process PID: " << pid << endl;
+    } else {
         cout << "Process not found." << endl;
-        cout << "²»ÈçÏÈ¶Á¶ÁÄÇ¸ö½ÐReadmeµÄÎÄ¼þ" << endl;
+        cout << "Please read the Readme file." << endl;
         system("pause");
         return 0;
     }
@@ -25,32 +24,31 @@ int main() {
     HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid);
     if (hProcess == NULL) {
         cerr << "Failed to open process. Error code: " << GetLastError() << endl;
-        cout << "²»ÈçÏÈ¶Á¶ÁÄÇ¸ö½ÐReadmeµÄÎÄ¼þ" << endl;
+        cout << "Please read the Readme file." << endl;
         system("pause");
         return 0;
     }
     cout << "Successfully opened process." << endl;
-
 
     initgraph(320, 480);
     setbkcolor(WHITE);
     cleardevice();
     ExMessage m;
     uintptr_t temp1;
-    
-    //const wchar_t esc[] = L"°´excÍË³ö";
-    //outtextxy(0, 0, esc);
+
+    // const wchar_t esc[] = L"æŒ‰excé€€å‡º";
+    // outtextxy(0, 0, esc);
     settextcolor(GREEN);
-    settextstyle(20, 0, _T("¿¹¾â³ÝÐ§¹û"));
-    outtextxy(0,0,L"²»ÈçÏÈ¶Á¶ÁÄÇ¸ö½ÐReadmeµÄÎÄ¼þ");
+    settextstyle(20, 0, _T("Anti-aliasing"));
+    outtextxy(0, 0, L"Please read the Readme file.");
     settextcolor(RED);
-    outtextxy(20, 40, L"°´Å¥µãÁÁ");
-    outtextxy(20, 80, L"Ëø»¤¶Ü");
-    outtextxy(20, 120, L"ÃëÉ±");
-    outtextxy(20, 160, L"Ãâ·Ñ×ÜÍ³ÉÌ³Ç");
-    outtextxy(20, 200, L"½øÈë¾º¼¼³¡");
-    outtextxy(20, 240, L"»ñµÃÎïÆ·Ôö¼Ó");
-    outtextxy(20, 280, L"ËÙË¢ÎÞ¾¡");
+    outtextxy(20, 40, L"Button Light");
+    outtextxy(20, 80, L"Lock Shield");
+    outtextxy(20, 120, L"One Hit Kill");
+    outtextxy(20, 160, L"Free President Shop");
+    outtextxy(20, 200, L"Enter Arena");
+    outtextxy(20, 240, L"Increase Item Gain");
+    outtextxy(20, 280, L"Quick Endless Mode");
     settextcolor(GREEN);
     setfillcolor(YELLOW);
     short Size = 19;
@@ -60,67 +58,65 @@ int main() {
     fillrectangle(0, 160, Size, 160 + Size);
     fillrectangle(0, 200, Size, 200 + Size);
     fillrectangle(0, 240, Size, 240 + Size);
-    fillrectangle(0,280, Size,280+ Size);
+    fillrectangle(0, 280, Size, 280 + Size);
     setfillcolor(CYAN);
 
-    while (true)
-    {
+    while (true) {
         Sleep(10);
         m = getmessage(EX_MOUSE | EX_KEY);
         cout << m.x << "," << m.y << endl;
 
-        switch (m.message)
-        {
+        switch (m.message) {
         case WM_LBUTTONDOWN:
-             cout << "lb is pressed" << endl; 
-             if (m.x >= 0 && m.x <= Size) {
-                 if (m.y >= 40 && m.y <= 40 + Size) {
-                     fillrectangle(0, 40, Size, 40 + Size);
-                     ScanAddress(hProcess, ËÑË÷°´Å¥µãÁÁ, 0);
-                     WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ÐÞ¸Ä°´Å¥µãÁÁ, sizeof(ÐÞ¸Ä°´Å¥µãÁÁ), 0);
-                     outtextxy(20, 40, L"°´Å¥µãÁÁ");
-                 }
-                 if (m.y >= 80 && m.y <= 80 + Size) {
-                     fillrectangle(0, 80, Size, 80 + Size);
-                     ScanAddress(hProcess, ËÑË÷Ëø»¤¶Ü, 0);
-                     WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ÐÞ¸ÄËø»¤¶Ü, sizeof(ÐÞ¸ÄËø»¤¶Ü), 0);
-                     outtextxy(20, 80, L"Ëø»¤¶Ü");
-                 }
-                 if (m.y >= 120 && m.y <= 120 + Size) {
-                     fillrectangle(0, 120, Size, 120 + Size);
-                     ScanAddress(hProcess, ËÑË÷ÃëÉ±, 0);
-                     WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ÐÞ¸ÄÃëÉ±, sizeof(ÐÞ¸ÄÃëÉ±), 0);
-                     outtextxy(20, 120, L"ÃëÉ±");
-                 }
-                 if (m.y >= 160 && m.y <= 160 + Size) {
-                     fillrectangle(0, 160, Size, 160 + Size);
-                     ScanAddress(hProcess, ËÑË÷Ãâ·Ñ×ÜÍ³, 0);
-                     WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ÐÞ¸ÄÃâ·Ñ×ÜÍ³, sizeof(ÐÞ¸ÄÃâ·Ñ×ÜÍ³), 0);
-                     ScanAddress(hProcess, ËÑË÷Ãâ·Ñ×ÜÍ³, 0);
-                     WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ÐÞ¸ÄÃâ·Ñ×ÜÍ³, sizeof(ÐÞ¸ÄÃâ·Ñ×ÜÍ³), 0);
-                     outtextxy(20, 160, L"Ãâ·Ñ×ÜÍ³ÉÌ³Ç");
-                 }
-                 if (m.y >= 200 && m.y <= 200 + Size) {
-                     fillrectangle(0, 200, Size, 200 + Size);
-                     ScanAddress(hProcess, ËÑË÷½øÈë¾º¼¼³¡, 0);
-                     WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ÐÞ¸Ä½øÈë¾º¼¼³¡1, sizeof(ÐÞ¸Ä½øÈë¾º¼¼³¡1), 0);
-                     temp1 = hanshu_dizhi + 103;
-                     WriteProcessMemory(hProcess, (LPVOID)temp1, &ÐÞ¸Ä½øÈë¾º¼¼³¡2, sizeof(ÐÞ¸Ä½øÈë¾º¼¼³¡2), 0);
-                     outtextxy(20, 200, L"½øÈë¾º¼¼³¡");
-                 }
-                 if (m.y >= 240 && m.y <= 240 + Size) {
-                     fillrectangle(0, 240, Size, 240 + Size);
-                     ScanAddress(hProcess, ËÑË÷»ñµÃÎïÆ·Ôö¼Ó, 0);
-                     WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ÐÞ¸Ä»ñµÃÎïÆ·Ôö¼Ó, sizeof(ÐÞ¸Ä»ñµÃÎïÆ·Ôö¼Ó), 0);
-                     outtextxy(20, 240, L"»ñµÃÎïÆ·Ôö¼Ó");
-                 }
-                 if (m.y >= 280 && m.y <= 280 + Size) {
-                     fillrectangle(0, 280, Size, 280 + Size);
-                     ScanAddress(hProcess, ËÑË÷ËÙË¢ÎÞ¾¡, 0);
-                     WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &ÐÞ¸ÄËÙË¢ÎÞ¾¡, sizeof(ÐÞ¸ÄËÙË¢ÎÞ¾¡), 0);
-                     outtextxy(20, 280, L"ËÙË¢ÎÞ¾¡");
-                 }
-             }
+            cout << "lb is pressed" << endl;
+            if (m.x >= 0 && m.x <= Size) {
+                if (m.y >= 40 && m.y <= 40 + Size) {
+                    fillrectangle(0, 40, Size, 40 + Size);
+                    ScanAddress(hProcess, searchButtonLight, 0);
+                    WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &modifyButtonLight, sizeof(modifyButtonLight), 0);
+                    outtextxy(20, 40, L"Button Light");
+                }
+                if (m.y >= 80 && m.y <= 80 + Size) {
+                    fillrectangle(0, 80, Size, 80 + Size);
+                    ScanAddress(hProcess, searchLockShield, 0);
+                    WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &modifyLockShield, sizeof(modifyLockShield), 0);
+                    outtextxy(20, 80, L"Lock Shield");
+                }
+                if (m.y >= 120 && m.y <= 120 + Size) {
+                    fillrectangle(0, 120, Size, 120 + Size);
+                    ScanAddress(hProcess, searchOneHitKill, 0);
+                    WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &modifyOneHitKill, sizeof(modifyOneHitKill), 0);
+                    outtextxy(20, 120, L"One Hit Kill");
+                }
+                if (m.y >= 160 && m.y <= 160 + Size) {
+                    fillrectangle(0, 160, Size, 160 + Size);
+                    ScanAddress(hProcess, searchFreePresident, 0);
+                    WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &modifyFreePresident, sizeof(modifyFreePresident), 0);
+                    ScanAddress(hProcess, searchFreePresident, 0);
+                    WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &modifyFreePresident, sizeof(modifyFreePresident), 0);
+                    outtextxy(20, 160, L"Free President Shop");
+                }
+                if (m.y >= 200 && m.y <= 200 + Size) {
+                    fillrectangle(0, 200, Size, 200 + Size);
+                    ScanAddress(hProcess, searchEnterArena, 0);
+                    WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &modifyEnterArena1, sizeof(modifyEnterArena1), 0);
+                    temp1 = hanshu_dizhi + 103;
+                    WriteProcessMemory(hProcess, (LPVOID)temp1, &modifyEnterArena2, sizeof(modifyEnterArena2), 0);
+                    outtextxy(20, 200, L"Enter Arena");
+                }
+                if (m.y >= 240 && m.y <= 240 + Size) {
+                    fillrectangle(0, 240, Size, 240 + Size);
+                    ScanAddress(hProcess, searchIncreaseItemGain, 0);
+                    WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &modifyIncreaseItemGain, sizeof(modifyIncreaseItemGain), 0);
+                    outtextxy(20, 240, L"Increase Item Gain");
+                }
+                if (m.y >= 280 && m.y <= 280 + Size) {
+                    fillrectangle(0, 280, Size, 280 + Size);
+                    ScanAddress(hProcess, searchQuickEndless, 0);
+                    WriteProcessMemory(hProcess, (LPVOID)hanshu_dizhi, &modifyQuickEndless, sizeof(modifyQuickEndless), 0);
+                    outtextxy(20, 280, L"Quick Endless Mode");
+                }
+            }
             break;
         case WM_KEYDOWN:
             if (m.vkcode == VK_ESCAPE) {
@@ -133,3 +129,4 @@ int main() {
     system("pause");
     return 0;
 }
+
